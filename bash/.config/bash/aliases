@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Pretty colors!
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+
+# Nyaliases for ls
+alias ll="ls -alhF"
+alias la="ls -A"
+alias l="ls -CF"
+
+# Coding stuff i guess
+alias py="python3 -q"
+alias edit="$EDITOR"
+alias :q="exit"
+alias :e="edit"
+
+command -v highlight >/dev/null 2>&1 \
+  && alias ccat="highlight --style=base16/nord -O truecolor";
+command -v doas >/dev/null 2>&1 \
+  && alias sudo="echo 'use \"doas\" instead.'; #";
+
+alias mypk="cat ${SSH_KEY_PATH}.pub"
+alias termbin="nc termbin.com 9999"
+alias myip="curl eth0.me"
+
+# Media stuff
+alias ffmpeg="ffmpeg -hide_banner"
+alias ffplay="ffplay -hide_banner"
+alias ffprobe="ffprobe -hide_banner"
+
+if command -v yt-dlp >/dev/null 2>&1; then
+  alias ytdv="yt-dlp -f 'bestvideo[height=?720]'"
+  alias ytda="yt-dlp -f 'bestaudio[ext=mp3]/bestaudio' \
+    --add-metadata --embed-thumbnail --extract-audio \
+    --audio-format mp3 --retries infinite"
+fi;
+
+# Git stuff
+alias ga="git add --verbose"
+alias gaa="ga --all"
+alias gc="git commit -v"
+alias gca="gc -a"
+alias gd="git diff"
+alias gp="git push -v"
+alias gpl="git pull"
+alias glog="git log --stat $GIT_PRETTY"
+alias glgp="glog -p"
+alias glogg="glog --graph"
+alias gst="git status"

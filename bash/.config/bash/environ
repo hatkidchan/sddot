@@ -1,0 +1,8 @@
+#!/bin/bash
+export EDITOR="nvim"
+export GIT_PRETTY="--pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'"
+export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.local/share/scripts"
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export MANPAGER="less -R --use-color -Dd+r -Du+b"
+export GPG_TTY="$(tty)"
