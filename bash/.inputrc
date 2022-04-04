@@ -1,2 +1,9 @@
+$include /etc/inputrc
+
 "\e[A": history-search-backward
 "\e[B": history-search-forward
+"\t": menu-complete
+
+set completion-ignore-case on
+set show-all-if-unmodified on
+set show-all-if-ambiguous on

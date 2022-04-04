@@ -40,6 +40,7 @@ nnoremap <C-W><C-Right>     :vert res -2<CR>
 tnoremap <A-q> <C-\><C-n>
 nnoremap <Leader>tt :FloatermToggle<CR>
 
+" Shift+F9 ... Shift+F12
 nnoremap <F21> :FloatermPrev<CR>
 nnoremap <F22> :FloatermNext<CR>
 nnoremap <F23> :FloatermNew<CR>
@@ -50,4 +51,4 @@ tnoremap <F23> <C-\><C-n>:FloatermNew<CR>
 tnoremap <F24> <C-\><C-n>:FloatermToggle<CR>
 
 " Startify
-nnoremap <Leader>st :Startify
+nnoremap <Leader>st :Startify<CR>

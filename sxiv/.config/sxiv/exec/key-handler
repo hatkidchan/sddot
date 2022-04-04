@@ -1,0 +1,130 @@
+#!/bin/sh
+keys="$1";
+notif() {
+    notify-send -a sxiv "Key-handler" "$1";
+}
+
+checkdeps() {
+    failed=0;
+    for dep in "$@"; do
+        if ! type "$dep" >/dev/null 2>&1; then
+            notify-send -a sxiv -u critical \
+                "Dependency not found." \
+                "Unable to find $dep. Install it somehow";
+            failed=1;
+        fi;
+    done
+    return $failed;
+}
+
+confirm() {
+    answer=$(printf 'no\nyes' | \
+        dmenu -l 0 -p 'Delete selected files?' \
+        -nb '#131313' -sb '#202020' -nf '#ff0000' -sf '#00ff00' );
+    [ "x$answer" = "xyes" ]; return $?;
+}
+usage() {
+    cat <<EOF | xargs -0 notify-send -a sxiv "Key-handler help"
+======== Dependencies: ========
+Some key handlers requires dependencies such as:
+xclip, xargs, awk, grep (widely available on most of setups)
+exiv2, gimp, hsetroot, convert (imagemagick), dmenu
+
+dmenu required for any handlers with user input. so fuck you.
+
+======== Key handlers (prefix: ^x) ========
+^c   - copy list of selected files
+^C   - copy selected files
+^a   - create archive with selected files and copy it to clipboard
+^g   - open in GIMP
+^i   - show image info
+ i   - show image info and copy one field
+ I   - copy image info to clipboard
+^b   - set as wallpaper
+^m   - move images somewhere
+^r   - rotate 90deg clockwise
+^l   - rotate 90deg counterclockwise
+DEL  - delete selected images (with confirmation)
+^x   - show this help
+^d   - dependencies check
+EOF
+}
+case "$keys" in
+    #======================================================================
+    "C-d")      checkdeps xclip xargs awk zip gimp \
+                            exiv2 hsetroot convert dmenu || exit 1;
+                notif "Dependency check passed";;
+    #======================================================================
+    "C-c")      checkdeps xclip || exit 1;
+                xclip -in -filter | xargs realpath | xclip -in -selection clipboard;;
+    #======================================================================
+    "C-C")      checkdeps awk xclip xargs || exit 1;
+                tr '\n' '\0' | xargs -0 realpath \
+                    | awk '{print "file://"$0}' \
+                    | xclip -sel c -i -t text/uri-list;
+                xclip -sel c -t text/uri-list -o \
+                    | xargs -0 notify-send -a sxiv "Copied:";;
+    #======================================================================
+    "C-a")      checkdeps zip xclip xargs || exit 1;
+                rm /tmp/sxarc*;
+                filename="/tmp/sxarc-$(uuidgen || uuid).zip";
+                xargs zip -jrv7 "$filename" | notif;
+                echo "file://$filename" | xclip -sel c -i -t text/uri-list;;
+    #======================================================================
+    "C-g")      checkdeps gimp xargs || exit 1;
+                tr '\n' '\0' | xargs -0 gimp & ;;
+    #======================================================================
+    "C-x")      usage;;
+    #======================================================================
+    "C-i")      checkdeps exiv2 grep xargs || exit 1;
+                while read -r file; do
+                    exiv2 pr "$file" | \
+                        grep -Pv ':\s*$' | \
+                        xargs -0 notify-send -a sxiv "Info";
+                done;;
+    #======================================================================
+    "I")        checkdeps exiv2 grep xargs xclip || exit 1;
+                while read -r file; do
+                    exiv2 pr "$file" \
+                        | grep -Pv ':\s*$' \
+                        | tee -a /dev/stderr;
+                done | xclip -sel c -i;;
+    #======================================================================
+    "C-m")      checkdeps dmenu || exit 1;
+                outf="$(find ~/images/ -type d | dmenu -p "Move files to...")";
+                if [ -d "$outf" ]; then
+                    while read -r file; do
+                        mv -v "$file" "$outf";
+                    done
+                fi;;
+    #======================================================================
+    "C-l")      checkdeps mogrify xargs || exit 1;
+                while read -r file; do
+                    mogrify -rotate -90 "$file"
+                done;;
+    #======================================================================
+    "C-r")      checkdeps mogrify xargs || exit 1;
+                while read -r file; do
+                    mogrify -rotate 90 "$file"
+                done;;
+    #======================================================================
+    "Delete")   checkdeps xargs dmenu || exit 1;
+                confirm && (
+                    n_files=$(tr '\n' '\0' | xargs -0 rm -v | wc -l);
+                    notif "Deleted $n_files files";
+                );;
+    #======================================================================
+    "C-b")      checkdeps hsetroot convert ~/.local/bin/setupwallpaper || exit 1;
+                rm ~/images/wallpapers/wallpaper.png;
+                file="$(tail -n 1)";
+                if [ "${file##*.}" = "png" ]; then
+                    cp "$file" ~/images/wallpapers/wallpaper.png;
+                else
+                    convert "$file" ~/images/wallpapers/wallpaper.png;
+                fi;
+                notif "Set $file as wallpaper";
+                hsetroot -fill ~/images/wallpapers/wallpaper.png;
+                ~/.local/bin/setupwallpaper;;
+    #======================================================================
+    *)          notif "Invalid keypress $keys, press ^x twice for help";;
+esac;
