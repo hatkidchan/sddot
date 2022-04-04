@@ -8,7 +8,7 @@ set background=dark
 let g:colors_name = "madeline"
 
 hi ColorColumn           ctermfg=NONE     ctermbg=237      cterm=NONE       guifg=NONE       guibg=#353535    gui=NONE
-hi Cursor                ctermfg=234      ctermbg=4        cterm=NONE       guifg=#151515    guibg=#104064    gui=NONE
+hi Cursor                ctermfg=234      ctermbg=4        cterm=NONE       guifg=#151515    guibg=#5b6976    gui=NONE
 hi CursorColumn          ctermfg=NONE     ctermbg=233      cterm=NONE       guifg=NONE       guibg=#0a0a0a    gui=NONE
 hi CursorLine            ctermfg=NONE     ctermbg=59       cterm=NONE       guifg=NONE       guibg=#666666    gui=NONE
 hi CursorLineNr          ctermfg=247      ctermbg=234      cterm=NONE       guifg=#9f9f9f    guibg=#151515    gui=NONE
@@ -26,8 +26,8 @@ hi MatchParen            ctermfg=NONE     ctermbg=NONE     cterm=underline  guif
 hi MoreMsg               ctermfg=150      ctermbg=NONE     cterm=NONE       guifg=#bbdd88    guibg=NONE       gui=NONE
 hi NonText               ctermfg=240      ctermbg=NONE     cterm=NONE       guifg=#555555    guibg=NONE       gui=NONE
 hi Normal                ctermfg=255      ctermbg=NONE     cterm=NONE       guifg=#f4f4f4    guibg=NONE       gui=NONE
-hi NormalFloat           ctermfg=15       ctermbg=233      cterm=NONE       guifg=#557081    guibg=#0a0a0a    gui=NONE
-hi PMenu                 ctermfg=15       ctermbg=233      cterm=NONE       guifg=#557081    guibg=#0a0a0a    gui=NONE
+hi NormalFloat           ctermfg=15       ctermbg=233      cterm=NONE       guifg=#f8f8f2    guibg=#0a0a0a    gui=NONE
+hi PMenu                 ctermfg=15       ctermbg=233      cterm=NONE       guifg=#f8f8f2    guibg=#0a0a0a    gui=NONE
 hi Conceal               ctermbg=233      cterm=NONE       guibg=#0a0a0a    gui=NONE
 hi PmenuSel              ctermfg=NONE     ctermbg=59       cterm=NONE       guifg=NONE       guibg=#666666    gui=NONE
 hi Question              ctermfg=150      ctermbg=NONE     cterm=NONE       guifg=#bbdd88    guibg=NONE       gui=NONE
@@ -35,13 +35,13 @@ hi Search                ctermfg=NONE     ctermbg=NONE     cterm=underline  guif
 hi SignColumn            ctermfg=NONE     ctermbg=237      cterm=NONE       guifg=NONE       guibg=#353535    gui=NONE
 hi StatusLine            ctermfg=253      ctermbg=239      cterm=bold       guifg=#dfdfdf    guibg=#4a4a4a    gui=bold
 hi StatusLineNC          ctermfg=249      ctermbg=237      cterm=NONE       guifg=#b4b4b4    guibg=#353535    gui=NONE
-hi TabLine               ctermfg=240      ctermbg=0        cterm=NONE       guifg=#555555    guibg=#1e2132    gui=NONE
-hi TabLineSel            ctermfg=15       ctermbg=0        cterm=NONE       guifg=#557081    guibg=#1e2132    gui=NONE
-hi TabLineFill           ctermfg=NONE     ctermbg=0        cterm=NONE       guifg=NONE       guibg=#1e2132    gui=NONE
+hi TabLine               ctermfg=240      ctermbg=0        cterm=NONE       guifg=#555555    guibg=#3d3e3d    gui=NONE
+hi TabLineSel            ctermfg=15       ctermbg=0        cterm=NONE       guifg=#f8f8f2    guibg=#3d3e3d    gui=NONE
+hi TabLineFill           ctermfg=NONE     ctermbg=0        cterm=NONE       guifg=NONE       guibg=#3d3e3d    gui=NONE
 hi Title                 ctermfg=255      ctermbg=NONE     cterm=NONE       guifg=#f4f4f4    guibg=NONE       gui=NONE
 hi Underlined            ctermfg=NONE     ctermbg=NONE     cterm=underline  guifg=NONE       guibg=NONE       gui=underline
 hi VertSplit             ctermfg=235      ctermbg=235      cterm=NONE       guifg=#1f1f1f    guibg=#1f1f1f    gui=NONE
-hi Visual                ctermfg=NONE     ctermbg=0        cterm=NONE       guifg=NONE       guibg=#1e2132    gui=NONE
+hi Visual                ctermfg=NONE     ctermbg=0        cterm=NONE       guifg=NONE       guibg=#3d3e3d    gui=NONE
 hi WarningMsg            ctermfg=255      ctermbg=167      cterm=NONE       guifg=#f4f4f4    guibg=#dd6666    gui=NONE
 hi WildMenu              ctermfg=234      ctermbg=215      cterm=NONE       guifg=#151515    guibg=#ffbb66    gui=NONE
 hi NERDTreeUp            ctermfg=167      ctermbg=NONE     cterm=NONE       guifg=#dd6666    guibg=NONE       gui=NONE
@@ -76,7 +76,7 @@ hi SpecialKey            ctermfg=59       ctermbg=237      cterm=NONE       guif
 hi SpellBad              ctermfg=255      ctermbg=167      cterm=NONE       guifg=#f4f4f4    guibg=#dd6666    gui=NONE
 hi SpellCap              ctermfg=255      ctermbg=74       cterm=NONE       guifg=#f4f4f4    guibg=#66bbdd    gui=NONE
 hi SpellRare             ctermfg=255      ctermbg=140      cterm=NONE       guifg=#f4f4f4    guibg=#bb88dd    gui=NONE
-hi SpellLocal            ctermfg=255      ctermbg=14       cterm=NONE       guifg=#f4f4f4    guibg=#45636d    gui=NONE
+hi SpellLocal            ctermfg=255      ctermbg=14       cterm=NONE       guifg=#f4f4f4    guibg=#899ca1    gui=NONE
 hi Statement             ctermfg=167      ctermbg=NONE     cterm=NONE       guifg=#dd6666    guibg=NONE       gui=NONE
 hi StorageClass          ctermfg=215      ctermbg=NONE     cterm=NONE       guifg=#ffbb66    guibg=NONE       gui=NONE
 hi String                ctermfg=150      ctermbg=NONE     cterm=NONE       guifg=#bbdd88    guibg=NONE       gui=NONE
