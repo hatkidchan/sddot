@@ -13,11 +13,17 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'mhinz/vim-startify'
 Plug 'voldikss/vim-floaterm'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'folke/todo-comments.nvim'
 
 call plug#end()
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 
-lua require'colorizer'.setup()
+lua << EOF
+require('colorizer').setup()
+require('todo-comments').setup()
+require('gitsigns').setup()
+EOF
 
 nmap <Leader>rn <Plug>(coc-rename)
