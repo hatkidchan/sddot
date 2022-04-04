@@ -1,0 +1,146 @@
+#!/bin/sh
+
+tdm() {
+    local awk_preview='/^~/            { next }
+                       /^#+/           { print "\033[35;3m"$0"\033[0m"; next }
+                       /^ *\[\+\] /    { print "\033[32m"$0"\033[0m"; next }
+                       /^ *\[x\] /     { print "\033[31m"$0"\033[0m"; next }
+                       /^ *\[ \] /     { print "\033[33m"$0"\033[0m"; next }
+                       /^ \* /         { print "\033[34m"$0"\033[0m"; next }
+                       /^[0-9]+\. /    { print "\033[34m"$0"\033[0m"; next }
+                       /^>/            { print "\033[92m"$0"\033[0m"; next }
+                       /^\(!\)/        { print "\033[91;7m"$0"\033[0m"; next }
+                       /.*/            { print $0; next }
+                ';
+    local act="$1"; shift;
+    [ -z "$TODO_PATH" ] && return;
+    case "$act" in 
+        motd)   [ "$(tdm num)" -eq 0 ] && return;
+                printf "\033[33m===== TODO =====\033[0m\n";
+                tdm print;;
+        print)  
+                awk "$awk_preview" "$TODO_PATH";;
+        add)    echo "$*" | tee -a "$TODO_PATH";;
+        num)    grep -vP "^~" "$TODO_PATH" | wc -l;;
+        ed)     case "$EDITOR" in
+                    *vim)   $EDITOR -c "set syntax=markdown" "$TODO_PATH";;
+                    *)      $EDITOR "$TODO_PATH";;
+                esac;;
+        *)      echo "tdm [print|add|num|ed]";;
+    esac;
+}
+
+lscolors() {
+    if [ "x$1" = "xall" ]; then
+        lscolors nrm bri 256 true;
+        return $?;
+    fi;
+    
+    if [ "x$1" = "x" ]; then
+        lscolors nrm bri;
+        return $?;
+    fi;
+
+    local fcn="\033[%dm       \033[0m";
+    local fcc="\033[%dm\033[%dm  %3d  \033[0m";
+
+    if [ "x$1" = "xnrm" ]; then shift; 
+        printf "\033[40m  %-56s  \033[0m\n" "";
+        printf "\033[40m  %-56s  \033[0m\n" "Normal";
+        printf "\033[40m  ";
+        for((i=40;i<48;i++)); do printf "$fcn" $i; done;
+        printf "\033[40m  \033[0m\n";
+        printf "\033[40m  ";
+        for((i=40;i<48;i++)); do printf "$fcc" $i 97 $i; done;
+        printf "\033[40m  \033[0m\n";
+        printf "\033[40m  ";
+        for((i=40;i<48;i++)); do printf "$fcn" $i; done;
+        printf "\033[40m  \033[0m\n";
+    fi;
+
+    if [ "x$1" = "xbri" ]; then shift; 
+        printf "\033[40m  %-56s  \033[0m\n" "";
+        printf "\033[40m  %-56s  \033[0m\n" "Bright";
+        printf "\033[40m  ";
+        for((i=100;i<108;i++)); do printf "$fcn" $i; done;
+        printf "\033[40m  \033[0m\n";
+        printf "\033[40m  ";
+        for((i=100;i<108;i++)); do printf "$fcc" $i 30 $i; done;
+        printf "\033[40m  \033[0m\n";
+        printf "\033[40m  ";
+        for((i=100;i<108;i++)); do printf "$fcn" $i; done;
+        printf "\033[40m  \033[0m\n";
+    fi;
+    
+    if [ "x$1" = "x256" ]; then shift;
+        printf "\033[40m  %-56s  \033[0m\n" "";
+        printf "\033[40m  %-56s  \033[0m\n" "256 Colors palette";
+        for((y=0;y<32;y++)); do
+            printf "\033[40m  ";
+            for((x=0;x<8;x++)); do
+                i=$((y * 8 + x));
+                if   [ "$i" -le 7 ];   then n=15;
+                elif [ "$i" -le 15 ];  then n=0;
+                elif [ "$i" -ge 232 ]; then n=$((255 - i + 232));
+                else
+                    ni=$((i - 16));
+                    nb=$((5 - (ni % 6))); ni=$((ni / 6));
+                    ng=$((5 - (ni % 6))); ni=$((ni / 6));
+                    nr=$((5 - (ni % 6)));
+                    n=$((16 + nb + ng * 6 + nr * 36));
+                fi
+                printf "\033[48;5;%d;38;5;%dm  %3d  \033[40m" $i $n $i;
+            done;
+            printf "\033[40m  \n";
+        done
+    fi;
+    
+    if [ "x$1" = "x256blk" ]; then shift;
+        printf "\033[40m  %-32s  \033[0m\n" "";
+        printf "\033[40m  %-32s  \033[0m\n" "256 Colors palette";
+        for((y=0;y<16;y++)); do
+            printf "\033[40m  ";
+            for((x=0;x<16;x++)); do
+                i=$((y * 16 + x));
+                printf "\033[48;5;%dm  \033[40m" $i;
+            done;
+            printf "\033[40m  \n";
+        done
+    fi;
+
+    if [ "x$1" = "xtrue" ]; then shift;
+        printf "\033[40m  %-56s  \033[0m\n" "";
+        printf "\033[40m  %-56s  \033[0m\n" "TrueColor";
+        for ((y=0;y<56;y=y+2)); do
+            printf "\033[40m  ";
+            for((x=0;x<56;x++)); do
+                r1=$((x * 255 / 56));
+                g1=$((255 * (56 - y) / 56));
+                b1=$((255-r1));
+                r2=$((x * 255 / 56));
+                g2=$((255 * (56 - (y + 1)) / 56));
+                b2=$((255-r2));
+                printf "\033[48;2;%d;%d;%d;38;2;%d;%d;%dm\u2584" \
+                    "$r1" "$g1" "$b1" "$r2" "$g2" "$b2";
+            done;
+            printf "\033[40m  \n";
+        done;
+    
+    fi;
+
+    printf "\033[40m  %-56s  \033[0m\n" "";
+}
+
+exper() {
+    case "$1" in
+        c)  filename="$(mktemp "codeexXXXXXXXX.c" --tmpdir)";
+            printf '#include <stdio.h>\n\nint main(void)\n{\n  return 0;\n}' > $filename;
+            binary="${filename/.c/}";
+            nvim -O "$filename" \
+                "term://ronchange '$filename' sh -c 'set -xe; " \
+                "gcc -o $binary $filename -Wall -pedantic " \
+                "-std=c99 -lm; sleep 0.2; $binary'";;
+        *) exit 1;
+    esac;
+}
+
