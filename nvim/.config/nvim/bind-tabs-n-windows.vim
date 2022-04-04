@@ -12,9 +12,9 @@ nnoremap <Leader>t= <C-W>=
 nnoremap <Leader>tm :sp<CR><C-W>T
 
 " NERDTree
-nnoremap <Leader>tr :NERDTreeToggle<CR>
-nnoremap <F8> :NERDTreeToggle<CR>
-inoremap <F8> <ESC>:NERDTreeToggle<CR>
+nnoremap <Leader>tr :NERDTreeToggle<CR>:NERDTreeRefreshRoot<CR>
+nnoremap <F8> :NERDTreeToggle<CR>:NERDTreeRefreshRoot<CR>
+inoremap <F8> <ESC>:NERDTreeToggle<CR>:NERDTreeRefreshRoot<CR>
 
 " Moving
 nnoremap <Leader><Up>       <C-W><Up>
