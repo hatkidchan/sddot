@@ -1,0 +1,74 @@
+#!/bin/sh
+
+PASS_LENGTH=8;
+PASS_COUNT=1;
+PASS_USE_UPPER="yes";
+PASS_USE_LOWER="yes";
+PASS_USE_NUMERIC="yes";
+PASS_USE_SPECIAL="yes";
+PASS_COPY_CLIPBOARD="no";
+CS_SPECIAL=";\\-:*%\$#@!~\`^&()+_\\|/.,";
+CS_UPPER="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+CS_LOWER="abcdefghijklmnopqrstuvwxyz";
+CS_NUMERIC="0123456789";
+
+usage() {
+    echo "
+Usage: $0 [-h] [-u/-U] [-l/-L] [-n/-N] [-s/-S] [-c]
+          [-x <characters>] [-i <length>] [-I <count>]
+Flags:
+    -h          Show this help
+    -u / -U     Disable/enable uppercase letters
+    -l / -L     Disable/enable lowercase letters
+    -n / -N     Disable/enable numeric letters
+    -s / -S     Disable/enable special characters ($CS_SPECIAL)
+    -c          Copy generated password(s) to clipboard
+    -x <...>    Set characters set to this (overrides options above)
+    -i <n>      Set password length
+    -I <n>      Generate <n> passwords (one per line)
+" 1>&2;
+    exit 1;
+}
+
+PASS_CHARSET="";
+while getopts "huUlLnNsScx:i:I:" k; do
+    case "$k" in
+        h) usage;;
+        u) PASS_USE_UPPER="no";;
+        U) PASS_USE_UPPER="yes";;
+        l) PASS_USE_LOWER="no";;
+        L) PASS_USE_LOWER="yes";;
+        n) PASS_USE_NUMERIC="no";;
+        N) PASS_USE_NUMERIC="yes";;
+        s) PASS_USE_SPECIAL="no";;
+        S) PASS_USE_SPECIAL="yes";;
+        x) PASS_CHARSET="${OPTARG}";;
+        i) PASS_LENGTH="${OPTARG}";;
+        I) PASS_COUNT="${OPTARG}";;
+        c) PASS_COPY_CLIPBOARD="yes";;
+        *) usage;;
+    esac;
+done;
+
+if [ "$PASS_CHARSET" = "" ]; then
+    [ "$PASS_USE_UPPER" = "yes" ] && PASS_CHARSET="$PASS_CHARSET$CS_UPPER";
+    [ "$PASS_USE_LOWER" = "yes" ] && PASS_CHARSET="$PASS_CHARSET$CS_LOWER";
+    [ "$PASS_USE_NUMERIC" = "yes" ] && PASS_CHARSET="$PASS_CHARSET$CS_NUMERIC";
+    [ "$PASS_USE_SPECIAL" = "yes" ] && PASS_CHARSET="$PASS_CHARSET$CS_SPECIAL";
+fi;
+
+
+
+if [ "$PASS_COPY_CLIPBOARD" = "yes" ]; then
+    (
+        tr -dc "$PASS_CHARSET" </dev/urandom \
+            | fold -w "$PASS_LENGTH" \
+            | head -n "$PASS_COUNT" \
+            | tee /dev/stderr \
+            | xclip -sel c -i
+    ) 2>&1;
+else
+    tr -dc "$PASS_CHARSET" </dev/urandom \
+        | fold -w "$PASS_LENGTH" \
+        | head -n "$PASS_COUNT";
+fi;

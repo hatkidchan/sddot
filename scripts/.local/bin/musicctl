@@ -1,0 +1,45 @@
+#!/bin/sh
+action="$1";
+
+music_backend="mpd";
+
+if ~/.local/bin/mocpcli >/dev/null 2>&1; then
+    music_backend="mocp";
+fi;
+
+mpd_trackname() { mpc current; }
+mocp_trackname() {
+    local info="$(mocp -i)";
+    artist="$(echo "$info" | grep -P '^Artist:' | sed 's!^Artist: !!')";
+    album="$(echo "$info" | grep -P '^Album:' | sed 's!^Album: !!')";
+    title="$(echo "$info" | grep -P '^SongTitle:' | sed 's!^SongTitle: !!')";
+    if [ "x$album" = "x" ]; then
+        echo "$artist - $title";
+    else
+        echo "$artist - $album - $title";
+    fi;
+}
+
+mpd_next() { mpc next; }
+mocp_next() { ~/.local/bin/mocpcli -f; }
+mpd_prev() { mpc prev; }
+mocp_prev() { ~/.local/bin/mocpcli -r; }
+mpd_pause() { mpc toggle; }
+mocp_pause() { ~/.local/bin/mocpcli -G; }
+mpd_stop() { mpc stop; }
+mocp_stop() { ~/.local/bin/mocpcli -s; }
+mpd_seekf() { mpc seek 5; }
+mocp_seekf() { ~/.local/bin/mocpcli -k 5; }
+mpd_seekb() { mpc seek -5; }
+mocp_seekb() { ~/.local/bin/mocpcli -k -5; }
+
+case "${action}" in
+    status) ${music_backend}_trackname;;
+    trackname) ${music_backend}_trackname;;
+    next) ${music_backend}_next;;
+    prev) ${music_backend}_prev;;
+    pause) ${music_backend}_pause;;
+    stop) ${music_backend}_stop;;
+    seekf) ${music_backend}_seekf;;
+    seekb) ${music_backend}_seekb;;
+esac;

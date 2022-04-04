@@ -1,0 +1,9 @@
+#!/bin/sh
+name=$(date +"scrot_%Y.%m.%d_%H.%M.%S.png");
+out_path="$HOME/images/shots/$name";
+scrot -b "$@" "$name" || exit;
+
+mv "$name" "$out_path";
+
+printf "file://%s" "$out_path" | xclip -sel c -i -t 'text/uri-list';
+notify-send "screenshot" "$out_path"
