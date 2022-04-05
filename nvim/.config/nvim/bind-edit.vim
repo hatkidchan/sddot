@@ -53,6 +53,11 @@ vnoremap < <gv
 vnoremap > >gv
 nnoremap <Leader>at mzggVG=`z
 
+" Comments
+imap <F20> <ESC><Space>c<Space>a
+nmap <F20> <Space>c<Space>
+vmap <F20> <Space>c<Space>gv
+
 " Space characters
 nnoremap <Leader>St :set listchars=tab:┊\ <cr>
 nnoremap <Leader>Ss :set listchars=tab:\\\|-,eol:$,nbsp:%,space:_,trail:#<cr>
