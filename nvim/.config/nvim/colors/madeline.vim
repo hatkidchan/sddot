@@ -28,7 +28,7 @@ hi NonText               ctermfg=240      ctermbg=NONE     cterm=NONE       guif
 hi Normal                ctermfg=255      ctermbg=NONE     cterm=NONE       guifg=#f4f4f4    guibg=NONE       gui=NONE
 hi NormalFloat           ctermfg=15       ctermbg=233      cterm=NONE       guifg=#f8f8f2    guibg=#0a0a0a    gui=NONE
 hi PMenu                 ctermfg=15       ctermbg=233      cterm=NONE       guifg=#f8f8f2    guibg=#0a0a0a    gui=NONE
-hi Conceal               ctermbg=233      cterm=NONE       guibg=#0a0a0a    gui=NONE
+hi Conceal               ctermbg=233      cterm=underline  guibg=#0a0a0a    gui=underline
 hi PmenuSel              ctermfg=NONE     ctermbg=59       cterm=NONE       guifg=NONE       guibg=#666666    gui=NONE
 hi Question              ctermfg=150      ctermbg=NONE     cterm=NONE       guifg=#bbdd88    guibg=NONE       gui=NONE
 hi Search                ctermfg=NONE     ctermbg=NONE     cterm=underline  guifg=NONE       guibg=NONE       gui=underline
