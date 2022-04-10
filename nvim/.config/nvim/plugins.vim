@@ -3,9 +3,21 @@ let g:coc_global_extensions = ['coc-html', 'coc-emmet', 'coc-clangd',
             \ 'coc-tsserver', 'coc-sh', 'coc-pyright', 'coc-json',
             \ 'coc-css', 'coc-calc' ]
 
-" INFO: change to another location for portable mode
+let g:plugins_dir='~/.local/share/nvim/plugged'
+" INFO: change to 1 for portable mode on Windows
+if 0
+    let $LOCALAPPDATA=fnameescape(g:initvim_folder."/localdata")
+    " WARN: node should be installed here
+    let $PATH.=';'.fnameescape(g:initvim_folder.'/node')
+    let $HOMEPATH=$LOCALAPPDATA
+    let $USERPROFILE=$HOMEPATH
+    " WARN: you should create localdata/{coc,plugged} yourself :)
+    let g:coc_data_home=fnameescape(g:initvim_folder.'/localdata/coc')
+    let g:coc_config_home=fnameescape(g:initvim_folder.'/localdata/coc')
+    let g:plugins_dir=fnameescape(g:initvim_folder.'/localdata/plugged')
+endif
 exec 'source '.fnameescape(g:initvim_folder."/plug.vim")
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin(g:plugins_dir)
 
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree'

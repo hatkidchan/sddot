@@ -24,7 +24,7 @@ inoremap <A-Space> <C-^>
 set t_kB=[Z
 set t_Co=256
 syntax on
-colorscheme madeline
+
 
 if (!has("patch-8.1.1365") || has("patch8.1.1365"))
     set nomodeline
@@ -34,6 +34,9 @@ endif
 
 " Sourcing stuff
 let g:initvim_folder = expand("<sfile>:p:h")
+exec 'set runtimepath+='.fnameescape(g:initvim_folder)
+colorscheme madeline
+
 let g:langprefs_path = g:initvim_folder."/langprefs"
 exec 'source '.fnameescape(g:initvim_folder."/bind-tabs-n-windows.vim")
 exec 'source '.fnameescape(g:initvim_folder."/bind-edit.vim")
@@ -41,3 +44,5 @@ exec 'source '.fnameescape(g:initvim_folder."/plugins.vim")
 exec 'source '.fnameescape(g:initvim_folder."/langprefs/load.vim")
 exec 'source '.fnameescape(g:initvim_folder."/langprefs/run.vim")
 exec 'source '.fnameescape(g:initvim_folder."/symbols.vim")
+
+

@@ -10,6 +10,7 @@ inoremap <C-D> <ESC>mzyyp`zja
 vnoremap <C-D> y`>p
 nnoremap <Leader>XR :let @+=@"<CR>
 nnoremap <Leader>XW :let @"=@+<CR>
+nnoremap <silent> <Leader>mc :delmarks a-zA-Z0-9<CR>
 
 " File saving
 nnoremap <Leader>fs :w<CR>
