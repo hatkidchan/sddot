@@ -49,6 +49,14 @@ tnoremap <F21> <C-\><C-n>:FloatermPrev<CR>
 tnoremap <F22> <C-\><C-n>:FloatermNext<CR>
 tnoremap <F23> <C-\><C-n>:FloatermNew<CR>
 tnoremap <F24> <C-\><C-n>:FloatermToggle<CR>
+nnoremap <S-F9> :FloatermPrev<CR>
+nnoremap <S-F10> :FloatermNext<CR>
+nnoremap <S-F11> :FloatermNew<CR>
+nnoremap <S-F12> :FloatermToggle<CR>
+tnoremap <S-F9> <C-\><C-n>:FloatermPrev<CR>
+tnoremap <S-F10> <C-\><C-n>:FloatermNext<CR>
+tnoremap <S-F11> <C-\><C-n>:FloatermNew<CR>
+tnoremap <S-F12> <C-\><C-n>:FloatermToggle<CR>
 
 " Startify
 nnoremap <Leader>st :Startify<CR>

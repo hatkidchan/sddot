@@ -58,6 +58,9 @@ nnoremap <Leader>at mzggVG=`z
 imap <F20> <ESC><Space>c<Space>a
 nmap <F20> <Space>c<Space>
 vmap <F20> <Space>c<Space>gv
+imap <S-F8> <ESC><Space>c<Space>a
+nmap <S-F8> <Space>c<Space>
+vmap <S-F8> <Space>c<Space>gv
 
 " Space characters
 nnoremap <Leader>St :set listchars=tab:┊\ <cr>

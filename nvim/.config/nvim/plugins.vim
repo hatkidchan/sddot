@@ -6,9 +6,10 @@ let g:coc_global_extensions = ['coc-html', 'coc-emmet', 'coc-clangd',
 let g:plugins_dir='~/.local/share/nvim/plugged'
 " INFO: change to 1 for portable mode on Windows
 if 0
-    let $LOCALAPPDATA=fnameescape(g:initvim_folder."/localdata")
     " WARN: node should be installed here
     let $PATH.=';'.fnameescape(g:initvim_folder.'/node')
+    " FIXME: not sure if that's a good idea...
+    let $LOCALAPPDATA=fnameescape(g:initvim_folder."/localdata")
     let $HOMEPATH=$LOCALAPPDATA
     let $USERPROFILE=$HOMEPATH
     " WARN: you should create localdata/{coc,plugged} yourself :)

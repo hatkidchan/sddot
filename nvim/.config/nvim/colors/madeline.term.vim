@@ -7,6 +7,12 @@
 set background=dark
 let g:colors_name = "madeline"
 
+if exists("g:neovide")
+    let g:neovide_transparency=0.9
+    let g:neovide_cursor_vfx_mode="pixiedust"
+    set guifont=Unifont:h12
+endif
+
 hi ColorColumn      ctermfg=NONE    ctermbg=237     cterm=NONE
 hi Cursor           ctermfg=234     ctermbg=4       cterm=NONE
 hi CursorColumn     ctermfg=NONE    ctermbg=233     cterm=NONE
@@ -85,4 +91,3 @@ hi Tag              ctermfg=140     ctermbg=NONE    cterm=NONE
 hi Todo             ctermfg=74      ctermbg=234     cterm=inverse
 hi Type             ctermfg=140     ctermbg=NONE    cterm=NONE
 hi vimTodo          ctermfg=162     ctermbg=51
-" XXX: something
