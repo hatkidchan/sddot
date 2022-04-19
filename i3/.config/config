@@ -1,0 +1,339 @@
+# i3 config file (v4)
+font pango:Terminus (TTF) 9
+
+# Lmao
+set $mod Mod4
+set $Locker "/bin/bash ~/.config/i3/locker.sh"
+set $Locker_suspend "/bin/bash ~/.config/i3/locker.sh suspend"
+set $Locker_hibernate "/bin/bash ~/.config/i3/locker.sh hibernate"
+set $terminal st
+
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+floating_modifier Mod4
+
+# Notifications
+bindsym $mod+Backslash exec --no-startup-id dunstctl close
+bindsym $mod+Shift+Backslash exec --no-startup-id dunstctl close-all
+bindsym $mod+n exec --no-startup-id dunstctl history
+bindsym $mod+Mod1+Backslash exec --no-startup-id dunstctl context
+
+# Basics
+bindsym $mod+Return exec $terminal
+bindsym $mod+F4 kill
+bindsym $mod+shift+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+x exec --no-startup-id ~/.config/polybar/toggle-display.sh;
+
+# Focusing
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+focus_follows_mouse no
+
+
+# Moving focused
+bindsym $mod+Mod1+$left move left
+bindsym $mod+Mod1+$down move down
+bindsym $mod+Mod1+$up move up
+bindsym $mod+Mod1+$right move right
+bindsym $mod+Mod1+Left move left
+bindsym $mod+Mod1+Down move down
+bindsym $mod+Mod1+Up move up
+bindsym $mod+Mod1+Right move right
+
+
+# Splitting
+bindsym $mod+g split h
+bindsym $mod+v split v
+
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+
+# Layout
+bindsym $mod+t border normal 1
+bindsym $mod+y border pixel
+bindsym $mod+u border none
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+Mod1+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Workspaces
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
+set $workspace11 "11"
+set $workspace12 "12"
+set $workspace13 "13"
+set $workspace14 "14"
+set $workspace15 "15"
+set $workspace16 "16"
+set $workspace17 "17"
+set $workspace18 "18"
+set $workspace19 "19"
+set $workspace20 "20"
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+bindsym $mod+Control+1 workspace $workspace11
+bindsym $mod+Control+2 workspace $workspace12
+bindsym $mod+Control+3 workspace $workspace13
+bindsym $mod+Control+4 workspace $workspace14
+bindsym $mod+Control+5 workspace $workspace15
+bindsym $mod+Control+6 workspace $workspace16
+bindsym $mod+Control+7 workspace $workspace17
+bindsym $mod+Control+8 workspace $workspace18
+bindsym $mod+Control+9 workspace $workspace19
+bindsym $mod+Control+0 workspace $workspace20
+
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+bindsym $mod+mod1+1 move container to workspace 1
+bindsym $mod+mod1+2 move container to workspace 2
+bindsym $mod+mod1+3 move container to workspace 3
+bindsym $mod+mod1+4 move container to workspace 4
+bindsym $mod+mod1+5 move container to workspace 5
+bindsym $mod+mod1+6 move container to workspace 6
+bindsym $mod+mod1+7 move container to workspace 7
+bindsym $mod+mod1+8 move container to workspace 8
+bindsym $mod+mod1+9 move container to workspace 9
+bindsym $mod+mod1+0 move container to workspace 10
+bindsym $mod+Control+mod1+1 move container to workspace 11
+bindsym $mod+Control+mod1+2 move container to workspace 12
+bindsym $mod+Control+mod1+3 move container to workspace 13
+bindsym $mod+Control+mod1+4 move container to workspace 14
+bindsym $mod+Control+mod1+5 move container to workspace 15
+bindsym $mod+Control+mod1+6 move container to workspace 16
+bindsym $mod+Control+mod1+7 move container to workspace 17
+bindsym $mod+Control+mod1+8 move container to workspace 18
+bindsym $mod+Control+mod1+9 move container to workspace 19
+bindsym $mod+Control+mod1+0 move container to workspace 20
+
+# Resizing
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym $down resize shrink height 10 px or 10 ppt
+    bindsym $up resize grow height 10 px or 10 ppt
+    bindsym $left resize shrink width 05 px or 05 ppt
+    bindsym $right resize grow width 05 px or 05 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # Same but with small step
+    bindsym Shift+$down resize shrink height 1 px or 1 ppt
+    bindsym Shift+$up resize grow height 1 px or 1 ppt
+    bindsym Shift+$left resize shrink width 1 px or 1 ppt
+    bindsym Shift+$right resize grow width 1 px or 1 ppt
+
+    bindsym Shift+Left resize shrink width 1 px or 1 ppt
+    bindsym Shift+Down resize grow height 1 px or 1 ppt
+    bindsym Shift+Up resize shrink height 1 px or 1 ppt
+    bindsym Shift+Right resize grow width 1 px or 1 ppt
+
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Exiting
+set $mode_system System: --L  --E  --S  --H  --R  --P 
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker
+    bindsym e exec --no-startup-id i3-msg exit
+    bindsym s exec --no-startup-id $Locker_suspend
+    bindsym h exec --no-startup-id $Locker_hibernate
+    bindsym r exec --no-startup-id systemctl reboot
+    bindsym p exec --no-startup-id systemctl poweroff -i
+
+    #back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Delete mode "$mode_system"
+
+set $mode_mouse Mouse: h j k l [ y u i ]
+mode "$mode_mouse" {
+    bindsym Shift+$up exec --no-startup-id xdotool mousemove_relative 0 -1
+    bindsym Shift+$down exec --no-startup-id xdotool mousemove_relative 0 1
+    bindsym Shift+$left exec --no-startup-id xdotool mousemove_relative -- -1 0
+    bindsym Shift+$right exec --no-startup-id xdotool mousemove_relative 1 0
+    bindsym Shift+Up exec --no-startup-id xdotool mousemove_relative 0 -1
+    bindsym Shift+Down exec --no-startup-id xdotool mousemove_relative 0 1
+    bindsym Shift+Left exec --no-startup-id xdotool mousemove_relative -- -1 0
+    bindsym Shift+Right exec --no-startup-id xdotool mousemove_relative 1 0
+
+    bindsym Control+$up exec --no-startup-id xdotool mousemove_relative 0 -20
+    bindsym Control+$down exec --no-startup-id xdotool mousemove_relative 0 20
+    bindsym Control+$left exec --no-startup-id xdotool mousemove_relative -- -20 0
+    bindsym Control+$right exec --no-startup-id xdotool mousemove_relative 20 0
+    bindsym Control+Up exec --no-startup-id xdotool mousemove_relative 0 -20
+    bindsym Control+Down exec --no-startup-id xdotool mousemove_relative 0 20
+    bindsym Control+Left exec --no-startup-id xdotool mousemove_relative -- -20 0
+    bindsym Control+Right exec --no-startup-id xdotool mousemove_relative 20 0
+
+    bindsym $up exec --no-startup-id xdotool mousemove_relative 0 -10
+    bindsym $down exec --no-startup-id xdotool mousemove_relative 0 10
+    bindsym $left exec --no-startup-id xdotool mousemove_relative -- -10 0
+    bindsym $right exec --no-startup-id xdotool mousemove_relative 10 0
+    bindsym Up exec --no-startup-id xdotool mousemove_relative 0 -10
+    bindsym Down exec --no-startup-id xdotool mousemove_relative 0 10
+    bindsym Left exec --no-startup-id xdotool mousemove_relative -- -10 0
+    bindsym Right exec --no-startup-id xdotool mousemove_relative 10 0
+
+    bindsym y exec --no-startup-id xdotool mousedown 1; exec sleep 0.05; exec xdotool mouseup 1
+    bindsym Shift+y exec --no-startup-id xdotool mousedown 1
+    bindsym u exec --no-startup-id xdotool mousedown 2; exec sleep 0.05; exec xdotool mouseup 2
+    bindsym Shift+u exec --no-startup-id xdotool mousedown 2
+    bindsym i exec --no-startup-id xdotool mousedown 3; exec sleep 0.05; exec xdotool mouseup 3
+    bindsym Shift+i exec --no-startup-id xdotool mousedown 3
+    bindsym t exec --no-startup-id xdotool mousedown 4; exec sleep 0.05; exec xdotool mouseup 4
+    bindsym g exec --no-startup-id xdotool mousedown 5; exec sleep 0.05; exec xdotool mouseup 5
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+z mode "$mode_mouse"
+
+# Colors
+# Class                 border  bckgrnd text    indic-r bd_chld
+client.focused          #131313 #131313 #cccccc #565656 #131313
+client.unfocused        #131313 #131313 #777777 #565656 #131313
+client.focused_inactive #131313 #131313 #777777 #565656 #131313
+client.urgent           #131313 #131313 #ffaaaa #ffaaaa #131313
+client.background       #131313
+
+# Gaps
+set $gaps_default_inner 25
+set $gaps_default_outer 15
+
+gaps inner 0
+gaps outer 0
+
+bindsym $mod+Shift+i gaps inner current toggle $gaps_default_inner
+bindsym $mod+Shift+o gaps outer current toggle $gaps_default_outer
+
+default_border normal 1
+default_floating_border pixel 1
+
+# Windows settings
+for_window [class="Chromium"] border none
+for_window [class="fontforge"] floating enable
+for_window [class="flameshot"] floating enable
+for_window [class="Display-im6.q16"] floating enable
+for_window [class="Display"] floating enable
+for_window [class="ffplay"] floating enable
+for_window [class="Yad"] floating enable
+for_window [class="Tk"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="qpaeq"] floating enable
+for_window [class="Nitrogen"] floating enable
+for_window [class="floating"] floating enable
+for_window [instance="floating"] floating enable
+for_window [class="ru-turikhay-tlauncher-bootstrap-Bootstrap"] floating enable
+for_window [title=".*Pixel Game Engine.*"] floating enable
+
+# Media
+set $mute pamixer -t
+set $vol_inc pamixer -i 2
+set $vol_dec pamixer -d 2
+set $music_player ncmpc
+set $music_stop ~/.local/bin/musicctl stop
+set $music_pause ~/.local/bin/musicctl pause
+set $music_next ~/.local/bin/musicctl next
+set $music_prev ~/.local/bin/musicctl prev
+set $music_fwd ~/.local/bin/musicctl seekf
+set $music_rev ~/.local/bin/musicctl seekb
+set $music_vinc mpc volume +2
+set $music_vdec mpc volume -2
+set $music_mute mpc toggleoutput 2
+
+bindsym Control+XF86AudioMute exec --no-startup-id $music_mute
+bindsym XF86AudioMute exec --no-startup-id $mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id $vol_inc
+bindsym XF86AudioLowerVolume exec --no-startup-id $vol_dec
+bindsym Mod4+F9 exec --no-startup-id $vol_dec
+bindsym Mod4+F10 exec --no-startup-id $vol_inc
+bindsym Mod4+F11 exec --no-startup-id $mute
+
+bindsym Control+XF86AudioRaiseVolume exec --no-startup-id $music_vinc
+bindsym Control+XF86AudioLowerVolume exec --no-startup-id $music_vdec
+bindsym XF86AudioNext exec --no-startup-id $music_next
+bindsym XF86AudioPrev exec --no-startup-id $music_prev
+bindsym Control+XF86AudioNext exec --no-startup-id $music_fwd
+bindsym Control+XF86AudioPrev exec --no-startup-id $music_rev
+bindsym XF86AudioStop exec --no-startup-id $music_stop
+bindsym XF86AudioPlay exec --no-startup-id $music_pause
+
+bindsym $mod+Shift+F5 exec --no-startup-id ~/.local/bin/musicctl prev
+bindsym $mod+F5 exec --no-startup-id ~/.local/bin/musicctl seekb
+bindsym $mod+F6 exec --no-startup-id ~/.local/bin/musicctl pause
+bindsym $mod+F7 exec --no-startup-id ~/.local/bin/musicctl stop
+bindsym $mod+Shift+F8 exec --no-startup-id ~/.local/bin/musicctl next
+bindsym $mod+F8 exec --no-startup-id ~/.local/bin/musicctl seekf
+bindsym $mod+m exec --no-startup-id $terminal -e $music_player
+bindsym $mod+Shift+m exec --no-startup-id $terminal -e mocp
+
+# Screenshot
+bindsym $mod+p exec --no-startup-id ~/.local/bin/scr
+bindsym $mod+Shift+p exec --no-startup-id ~/.local/bin/scr -s
+bindsym $mod+Mod1+p exec --no-startup-id ~/.local/bin/fscr
+bindsym Print exec flameshot gui
+
+# Autostart
+exec_always --no-startup-id ~/.config/i3/autostart.sh
+
+# Other stuff
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Mod1+i exec --no-startup-id ~/.local/bin/select-emoji
+bindsym $mod+i exec --no-startup-id ~/.local/bin/imgsearch
+bindsym $mod+Shift+c reload; exec --no-startup-id ~/.config/i3/polybar.sh
+bindsym $mod+F1 exec --no-startup-id ~/.local/bin/toggletouchpad
+bindsym --release $mod+F2 exec --no-startup-id transset
+bindsym Mod4+Ctrl+F2 exec --no-startup-id brightnessctl s 5%-
+bindsym Mod4+Ctrl+F3 exec --no-startup-id brightnessctl s 5%+
+bindsym $mod+F3 exec sh -c 'i3-msg -rt get_workspaces | jq -r .[].name | dmenu -p "goto:" | xargs i3-msg workspace'
+bindsym $mod+Mod1+F3 exec sh -c 'i3-msg -rt get_workspaces | jq -r .[].name | dmenu -p "move:" | xargs i3-msg move container to workspace'
