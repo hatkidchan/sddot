@@ -2,7 +2,7 @@
 
 $(dirname "$0")/polybar.sh;
 
-${HOME}/.local/bin/setupwallpaper || hsetroot -solid '#131313';
+${HOME}/.local/bin/setupwallpaper || hsetroot -solid '@@background@@';
 
 # (nitrogen --restore || true) & disown;
 xset r rate 250 25;
@@ -11,7 +11,8 @@ nm-applet & disown;
 (clipit || true) & disown;
 xfce4-power-manager & disown;
 killall oneko;
-oneko -bg '#131313' -fg '#adadad' -tofocus -sakura & disown;
+oneko -bg '@@background@@' \
+    -fg '@@foreground@@' -tofocus -sakura & disown;
 
 setxkbmap -model pc104 -layout us,ru -option grp:alt_shift_toggle;
 [ -f "${HOME}/.config/xkb.conf" ] \

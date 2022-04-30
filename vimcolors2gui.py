@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from sys import argv
 from re import compile as regexp
+from config import lookup
 
 REGEX_HIGHLIGHT = regexp(r"^hi\s+(\w+)\s+(.*)")
 REGEX_PARAM = regexp(r"(\w+)=([^\s]+)")
@@ -9,22 +10,7 @@ palette = {
     "name": "",
     "author": "",
     "color": [
-        "#3d3e3d",
-        "#755a5b",
-        "#68755a",
-        "#756e5a",
-        "#5b6976",
-        "#755b76",
-        "#465457",
-        "#ccccc6",
-        "#5a5b5c",
-        "#a37679",
-        "#87a376",
-        "#a39b76",
-        "#758ba3",
-        "#9f76a3",
-        "#899ca1",
-        "#f8f8f2"
+        lookup('color.{}'.format(i)) for i in range(16)
     ],
     "foreground": "#658798",
     "background": "#1e2138"

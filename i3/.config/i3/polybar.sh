@@ -12,21 +12,5 @@ while pgrep -u $UID -x polybar >/dev/null; do
     );
 done
 
-MAIN_SCREEN_NAME="LVDS1"
-
-if xrandr | grep "VGA1 connected" >/dev/null 2>&1; then
-    echo "Configuring VGA1...";
-    xrandr --output LVDS1 --off --output VGA1 --auto;
-    echo "Running polybar::main @ VGA1...";
-    MONITOR=VGA1 polybar main & disown;
-    echo "Running polybar::tray @ VGA1...";
-    MONITOR=VGA1 polybar tray & disown;
-else
-    xrandr --output $MAIN_SCREEN_NAME --auto --output VGA1 --off;
-    echo "Running polybar::main @ LVDS1...";
-    MONITOR=$MAIN_SCREEN_NAME polybar main & disown;
-    echo "Running polybar::tray @ LVDS1...";
-    MONITOR=$MAIN_SCREEN_NAME polybar tray & disown;
-fi
-setupwallpaper;
-
+MONITOR=VGA-0 polybar main & disown;
+MONITOR=VGA-0 polybar tray & disown;

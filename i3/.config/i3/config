@@ -1,5 +1,5 @@
 # i3 config file (v4)
-font pango:Terminus (TTF) 9
+font @@applications.i3.font@@
 
 # Lmao
 set $mod Mod4
@@ -17,10 +17,10 @@ set $right l
 floating_modifier Mod4
 
 # Notifications
-bindsym $mod+Backslash exec --no-startup-id dunstctl close
-bindsym $mod+Shift+Backslash exec --no-startup-id dunstctl close-all
-bindsym $mod+n exec --no-startup-id dunstctl history
-bindsym $mod+Mod1+Backslash exec --no-startup-id dunstctl context
+bindsym $mod+bracketleft exec --no-startup-id dunstctl close
+bindsym $mod+Shift+bracketleft exec --no-startup-id dunstctl close-all
+bindsym $mod+bracketright exec --no-startup-id dunstctl history-pop
+bindsym $mod+Shift+bracketright exec --no-startup-id dunstctl context
 
 # Basics
 bindsym $mod+Return exec $terminal
@@ -240,11 +240,11 @@ bindsym $mod+z mode "$mode_mouse"
 
 # Colors
 # Class                 border  bckgrnd text    indic-r bd_chld
-client.focused          #131313 #131313 #cccccc #565656 #131313
-client.unfocused        #131313 #131313 #777777 #565656 #131313
-client.focused_inactive #131313 #131313 #777777 #565656 #131313
-client.urgent           #131313 #131313 #ffaaaa #ffaaaa #131313
-client.background       #131313
+client.focused          @@templates.i3-client@focused@@
+client.unfocused        @@templates.i3-client@unfocused@@
+client.focused_inactive @@templates.i3-client@inactive@@
+client.urgent           @@templates.i3-client@urgent@@
+client.background       @@applications.i3.background@@
 
 # Gaps
 set $gaps_default_inner 25
@@ -319,8 +319,8 @@ bindsym $mod+Shift+m exec --no-startup-id $terminal -e mocp
 
 # Screenshot
 bindsym $mod+p exec --no-startup-id ~/.local/bin/scr
-bindsym $mod+Shift+p exec --no-startup-id ~/.local/bin/scr -s
-bindsym $mod+Mod1+p exec --no-startup-id ~/.local/bin/fscr
+bindsym $mod+Shift+p --release exec --no-startup-id ~/.local/bin/scr -s
+bindsym $mod+Mod1+p --release exec --no-startup-id ~/.local/bin/fscr
 bindsym Print exec flameshot gui
 
 # Autostart

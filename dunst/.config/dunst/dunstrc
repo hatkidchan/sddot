@@ -1,50 +1,49 @@
 [global]
-	font = "Terminus (TTF) 9"
+	font = "@@font@@"
 	markup = yes
 	format = "<b>%a: %s</b> <u>%p</u>\n%b"
 	sort = yes
 	indicate_hidden = yes
 	alignment = left
 	icon_position = left
-	bounce_freq = 0
 	show_age_threshold = 60
 	word_wrap = no
 	ignore_newline = no
-	geometry = "720x5-0+18"
+	width = (250, 720)
+	height = 100
+	origin = top-right
+	offset = 8x8
 	transparency = 0
 	idle_threshold = 120
 	monitor = 0
 	follow = keyboard
+	transparency = 15
 	sticky_history = yes
 	line_height = 0
 	separator_height = 2
 	padding = 4
 	horizontal_padding = 4
 	separator_color = frame
-	startup_notification = true
 	dmenu = dmenu -p dunst
 	browser = /usr/bin/x-www-browser
 	frame_width = 1
-	frame_color = "#525252"
-	
-[shortcuts]
-	close = mod4+backslash
-	close_all = mod4+shift+backslash
-	history = mod4+n
-	context = mod4+mod1+backslash
+	frame_color = "@@applications.dunst.frame@@"
+	max_icon_size = 32
+	mouse_left_click = close_current
+	mouse_right_click = context
 
 [urgency_low]
-	background = "#1f1f1f"
-	foreground = "#75aea7"
+	background = "@@applications.dunst.non_urgent.background@@"
+	foreground = "@@applications.dunst.non_urgent.foreground@@"
 	timeout = 10
 
 [urgency_normal]
-	background = "#1f1f1f"
-	foreground = "#adadad"
+	background = "@@applications.dunst.normal.background@@"
+	foreground = "@@applications.dunst.normal.foreground@@"
 	timeout = 10
 
 [urgency_critical]
-	background = "#1f1f1f"
-	foreground = "#aa777e"
+	background = "@@applications.dunst.urgent.background@@"
+	background = "@@applications.dunst.urgent.foreground@@"
 	timeout = 0
 

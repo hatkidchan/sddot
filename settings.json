@@ -1,0 +1,157 @@
+{
+  "#credits": "https://lospec.com/palette-list/luap-40",
+  "luap40": [
+    "#597080${#0:color.6}",
+    "#6da18a${#1:color.2}",
+    "#86bf8f${#2:color.10}",
+    "#b5d9a3${#3:}",
+    "#e0e6c3${#4:}",
+    "#f0ebc0${#5:color.11}",
+    "#e6cca1${#6:}",
+    "#d99f82${#7:}",
+    "#c4736c${#8:}",
+    "#bd555f${#9:i3 urgent border}",
+    "#8c3f52${#10:color.1}",
+    "#733453${#11:dunst urgent}",
+    "#66294c${#12:color.13}",
+    "#331a33${#13:}",
+    "#433057${#14:color.5}",
+    "#464a73${#15:}",
+    "#546799${#16:color.4}",
+    "#6699cc${#17:color.12}",
+    "#82b5d9${#18:}",
+    "#a1d5e6${#19:color.14}",
+    "#c2f2f2${#20:}",
+    "#f5f5f5${#21:}",
+    "#dadada${#22:color.15}",
+    "#bfbfbf${#23:foreground}",
+    "#a3a3a3${#24:color.7}",
+    "#888888${#25:color.8}",
+    "#6d6d6d${#26:}",
+    "#515151${#27:}",
+    "#363636${#28:color.0}",
+    "#1a1a1a${#29:background}",
+    "#33291f${#30:}",
+    "#403326${#31:border}",
+    "#574639${#32:}",
+    "#735f4b${#33:}",
+    "#b39374${#34:color.3}",
+    "#d9b898${#35:}",
+    "#e6d4c3${#36:}",
+    "#d9b8ad${#37:}",
+    "#c98f8f${#38:}",
+    "#bf6979${#39:color.9}"
+  ],
+  "color": [
+    "${luap40.28}", "${luap40.10}",
+    "${luap40.1}", "${luap40.34}",
+    "${luap40.16}", "${luap40.14}",
+    "${luap40.0}", "${luap40.24}",
+    "${luap40.25}", "${luap40.39}",
+    "${luap40.2}", "${luap40.5}",
+    "${luap40.17}", "${luap40.12}",
+    "${luap40.19}", "${luap40.22}"
+  ],
+  "border": "${luap40.29}",
+  "foreground": "${luap40.23}",
+  "background": "${luap40.29}",
+  "font": "Terminus (TTF) 9",
+  "applications": {
+    "st": {
+      "colors": [
+        "${color.0}", "${color.1}",
+        "${color.2}", "${color.3}",
+        "${color.4}", "${color.5}",
+        "${color.6}", "${color.7}",
+        "${color.8}", "${color.9}",
+        "${color.10}", "${color.11}",
+        "${color.12}", "${color.13}",
+        "${color.14}", "${color.15}"
+      ],
+      "background": "${background}",
+      "foreground": "${foreground}",
+      "cursor": "${color.8}",
+      "cursor_reverse": "${color.15}"
+    },
+    "dmenu": {
+      "normal_bg": "${background}",
+      "normal_fg": "${foreground}",
+      "selection_bg": "${color.0}",
+      "selection_fg": "${color.15}",
+      "output_bg": "${color.8}",
+      "output_fg": "${color.10}"
+    },
+    "polybar": {
+      "background": "${background:s/#/#00}",
+      "foreground": "${color.8}",
+      "active": "${foreground}",
+      "alert": "${color.9}",
+      "success": "${color.2}"
+    },
+    "xorg": {
+      "colors": [
+        "${color.0}", "${color.1}",
+        "${color.2}", "${color.3}",
+        "${color.4}", "${color.5}",
+        "${color.6}", "${color.7}",
+        "${color.8}", "${color.9}",
+        "${color.10}", "${color.11}",
+        "${color.12}", "${color.13}",
+        "${color.14}", "${color.15}"
+      ],
+      "background": "${background}",
+      "foreground": "${foreground}",
+      "cursor": "${color.8}"
+    },
+    "i3": {
+      "font": "pango:${font}",
+      "focused": {
+        "border": "${border}",
+        "background": "${background}",
+        "text": "${foreground}",
+        "indicator": "${color.4}",
+        "border_child": "${border}"
+      },
+      "unfocused": {
+        "border": "${border}",
+        "background": "${background}",
+        "text": "${luap40.27}",
+        "indicator": "${color.4}",
+        "border_child": "${border}"
+      },
+      "inactive": {
+        "border": "${border}",
+        "background": "${background}",
+        "text": "${color.27}",
+        "indicator": "${color.4}",
+        "border_child": "${border}"
+      },
+      "urgent": {
+        "border": "${color.9}",
+        "background": "${luap40.11}",
+        "text": "${luap40.21}",
+        "indicator": "${luap40.38}",
+        "border_child": "${color.9}"
+      },
+      "background": "${background}"
+    },
+    "dunst": {
+      "frame": "${luap40.15}",
+      "non_urgent": {
+        "background": "${background}",
+        "foreground": "${color.7}"
+      },
+      "normal": {
+        "background": "${background}",
+        "foreground": "${luap40.20}"
+      },
+      "urgent": {
+        "background": "${luap40.11}",
+        "foreground": "${color.9}"
+      }
+    }
+  },
+  "templates": {
+    "i3-client": "${applications.i3.@.|join(border,background,text,indicator,border_child)}"
+  }
+}
