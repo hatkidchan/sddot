@@ -1,0 +1,6 @@
+[submodule "sources/dmenu"]
+	path = sources/dmenu
+	url = https://git.suckless.org/dmenu
+[submodule "sources/st"]
+	path = sources/st
+	url = https://git.suckless.org/st

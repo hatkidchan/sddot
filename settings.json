@@ -58,6 +58,7 @@
   "font": "Terminus (TTF) 9",
   "applications": {
     "st": {
+      "font": "Terminus (TTF):size=9:antialias=true:autohint=true",
       "colors": [
         "${color.0}", "${color.1}",
         "${color.2}", "${color.3}",
@@ -74,12 +75,23 @@
       "cursor_reverse": "${color.15}"
     },
     "dmenu": {
-      "normal_bg": "${background}",
-      "normal_fg": "${foreground}",
-      "selection_bg": "${color.0}",
-      "selection_fg": "${color.15}",
-      "output_bg": "${color.8}",
-      "output_fg": "${color.10}"
+      "font": "Terminus (TTF):size=9",
+      "normal": {
+        "bg": "${background}",
+        "fg": "${foreground}",
+        "hi_bg": "${background}",
+        "hi_fg": "${luap40.38}"
+      },
+      "selection": {
+        "bg": "${color.0}",
+        "fg": "${color.15}",
+        "hi_bg": "${color.0}",
+        "hi_fg": "${luap40.38}"
+      },
+      "output": {
+        "bg": "${color.8}",
+        "fg": "${color.10}"
+      }
     },
     "polybar": {
       "background": "${background:s/#/#00}",
@@ -152,6 +164,8 @@
     }
   },
   "templates": {
-    "i3-client": "${applications.i3.@.|join(border,background,text,indicator,border_child)}"
+    "i3-client": "${applications.i3.@.|join(border,background,text,indicator,border_child)}",
+    "dmenu": "\"${applications.dmenu.@.fg}\", \"${applications.dmenu.@.bg}\"",
+    "dmenu-hi": "\"${applications.dmenu.@.hi_fg}\", \"${applications.dmenu.@.hi_bg}\""
   }
 }
