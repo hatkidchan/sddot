@@ -25,7 +25,7 @@ index 1edb647..3126a35 100644
 +	[SchemeSel] = { @@templates.dmenu@selection@@ },
 +	[SchemeOut] = { @@templates.dmenu@output@@ },
 +	[SchemeSelHighlight] = { @@templates.dmenu-hi@selection@@ },
-+	[SchemeNormHighlight] = { @@templated.dmenu-hi@normal@@ },
++	[SchemeNormHighlight] = { @@templates.dmenu-hi@normal@@ },
  };
  /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
  static unsigned int lines      = 0;
