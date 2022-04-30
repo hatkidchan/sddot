@@ -30,14 +30,14 @@ nvim: ./build/.config
 build/.config:
 	mkdir -vp ./build/.config
 
-sources/dmenu/dmenu:
+dmenu:
 	rm -f sources/dmenu/config.h
 	( cd sources/dmenu && git restore * )
 	( cd sources/dmenu && git apply < ../../patches/dmenu.patch )
 	python3 replace.py sources/dmenu/config.def.h > sources/dmenu/config.h
 	( cd sources/dmenu && make clean all )
 
-sources/st/st:
+st:
 	rm -f sources/st/config.h
 	( cd sources/st && git restore * )
 	( cd sources/st && git apply < ../../patches/st.patch )
