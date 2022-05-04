@@ -1,0 +1,50 @@
+#!/usr/bin/python3
+import sys
+import os
+from subprocess import Popen
+import time
+
+_, filename, *args = sys.argv
+
+last_mtime = 0  # os.stat(filename).st_mtime
+
+status = 'You shouldn\'t see that'
+color_code = '91'
+
+
+proc = None
+start = None
+try:
+    while True:
+        try:
+            now_mtime = os.stat(filename).st_mtime
+        except FileNotFoundError:
+            status = 'File disappeared'
+            color_code = '91'
+        else:
+            new_time = time.localtime(now_mtime)
+            time_str = time.strftime('%H:%M:%S', new_time)
+            status = 'File changed: ' + time_str
+            color_code = '30'
+            if now_mtime != last_mtime:
+                last_mtime = now_mtime
+                sys.stdout.write('\033c\033[H')
+                sys.stdout.write('\033[42;' + color_code + 'm')
+                sys.stdout.write('\033[2K' + status)
+                sys.stdout.write('\033[0m\033[2;1H')
+                sys.stdout.flush()
+                if proc:
+                    proc.kill()
+                    proc.terminate()
+                proc = Popen(args)
+                start = time.time()
+        time.sleep(0.1)
+        if proc:
+            exitcode = proc.poll()
+            if exitcode is not None:
+                print(f'\x1b[35mProcess exited with code {exitcode} after {time.time() - start:.2f} seconds\x1b[0m')
+                proc = None
+                start = None
+except KeyboardInterrupt:
+    if proc:
+        proc.kill()
