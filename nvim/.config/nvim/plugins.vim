@@ -28,7 +28,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'folke/todo-comments.nvim'
-Plug 'chentau/marks.nvim'
+Plug 'chentoast/marks.nvim'
 Plug 'lewis6991/spellsitter.nvim'
 Plug 'preservim/nerdcommenter'
 

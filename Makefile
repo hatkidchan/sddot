@@ -23,6 +23,9 @@ dunst: ./build/.config
 	cp -vr ./dunst/.config/dunst ./build/.config/
 	python3 replace.py ./dunst/.config/dunst/dunstrc > ./build/.config/dunst/dunstrc
 
+bash: ./build/.config
+	cp -vr ./bash/. ./build/
+
 nvim: ./build/.config
 	cp -vr ./nvim/.config/nvim ./build/.config
 	python3 ./vimcolors2gui.py ./nvim/.config/nvim/colors/madeline.term.vim > ./build/.config/nvim/colors/madeline.vim
