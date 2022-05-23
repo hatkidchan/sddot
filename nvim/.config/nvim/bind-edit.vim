@@ -75,3 +75,7 @@ nnoremap <S-Home> gg
 nnoremap <S-End> G
 inoremap <S-Home> <esc>gga
 inoremap <S-End> <esc>Ga
+
+" Actions
+nmap <Leader>AC  <Plug>(coc-codeaction)
+nmap <Leader>ac  <Plug>(coc-codeaction-line)
